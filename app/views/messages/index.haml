@@ -1,0 +1,30 @@
+.contents
+  = render "side-body"
+  .main
+    .main__header
+      .main__header--top
+        %h2.chat-name
+          / = @group.name
+          GroupName
+        / = link_to "edit", edit_group_path(@group), class: 'edit'
+        = link_to "edit", "#", class: 'edit'
+      .main__header--bottom
+        %h3.member-head
+          Member
+        %ul.member-name
+          / - @group.users.each do |user|
+          %li.list-name
+            / = user.nickname
+            username
+    .main__body.clearfix
+      / = render @messages
+      = render "messages"
+    .main__footer
+      .main__footer--form
+        / = form_for [@group, @message], html: {class: 'from__message'} do |f|
+        = form_for "#", html: {class: 'from__message'} do |f|
+          = f.text_field :text, placeholder: "type a message"
+          = f.label :image do
+            = fa_icon "image", id: 'upload-icon'
+            = f.file_field :image, hidden: 'hidden'
+          = f.submit "SEND", id: 'message-submit'
