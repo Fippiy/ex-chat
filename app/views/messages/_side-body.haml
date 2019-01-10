@@ -9,12 +9,9 @@
         = fa_icon "gear", class: 'btn'
   .side__body
     .side__body--group
-      / - current_user.groups.each do |group|
-      / = link_to group_messages_path(group) do
-      = link_to "#" do
-        .group-name
-          / = group.name
-          groupname
-        .group-message
-          / = group.show_last_message
-          groupmessage
+      - current_user.groups.each do |group|
+        = link_to group_messages_path(group) do
+          .group-name
+            = group.name
+          .group-message
+            / = group.show_last_message
